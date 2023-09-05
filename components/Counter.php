@@ -20,10 +20,10 @@
     <div>
         Count: <span id="<?= $ids->count ?>"> <?= $store->count ?> </span>
     </div>
-    <button hx-post="$/Counter.php?increment=1" hx-swap="innerHTML" hx-target="#<?= $ids->count ?>">
+    <button hx-post="/$/Counter.php?increment=1" hx-swap="innerHTML" hx-target="#<?= $ids->count ?>">
         Increment
     </button>
-    <button hx-post="$/Counter.php?decrement=1" hx-swap="innerHTML" hx-target="#<?= $ids->count ?>">
+    <button hx-post="/$/Counter.php?decrement=1" hx-swap="innerHTML" hx-target="#<?= $ids->count ?>">
         Decrement
     </button>
 
