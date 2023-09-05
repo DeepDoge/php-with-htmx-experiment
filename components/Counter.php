@@ -1,6 +1,6 @@
 <? {
     require_once ROOT_PATH . "/libs/uniqueIds.php";
-    require_once ROOT_PATH . "/libs/state.php";
+    require_once ROOT_PATH . "/libs/fileStore.php";
 
     $classes = new UniqueIdStore();
     $ids = new UniqueIdStore();
