@@ -1,16 +1,31 @@
-<?php
-    $countFilepath = "/tmp/counter";
-    $count = file_exists($countFilepath) ? intval(file_get_contents($countFilepath)) : 0;
+<? {
+    require_once ROOT_PATH . "/libs/uniqueIds.php";
+    require_once ROOT_PATH . "/libs/state.php";
 
-    if (array_key_exists("increment", $_GET))
-    {
-        file_put_contents($countFilepath, ++$count);
-        echo $count;
+    $classes = new UniqueIdStore();
+    $ids = new UniqueIdStore();
+    $store = new FileStore("/tmp/counter-store");
+
+    $store->count ??= 0;
+
+    if (COMPONENT_CALL) {
+        if (isset($_GET['increment'])) {
+            echo ++$store->count;
+        } else if (isset($_GET['decrement'])) {
+            echo --$store->count;
+        }
         exit;
     }
 ?>
+    <div>
+        Count: <span id="<?= $ids->count ?>"> <?= $store->count ?> </span>
+    </div>
+    <button hx-post="$/Counter.php?increment=1" hx-swap="innerHTML" hx-target="#<?= $ids->count ?>">
+        Increment
+    </button>
+    <button hx-post="$/Counter.php?decrement=1" hx-swap="innerHTML" hx-target="#<?= $ids->count ?>">
+        Decrement
+    </button>
 
-<div>Count: <span id="count"><?php echo $count ?></span></div>
-<button hx-post="components/Counter.php?increment=1" hx-swap="innerHTML" hx-target="#count">
-    Increment
-</button>
+<?
+}
