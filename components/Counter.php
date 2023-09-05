@@ -17,15 +17,19 @@
         exit;
     }
 ?>
-    <div>
-        Count: <span id="<?= $ids->count ?>"> <?= $store->count ?> </span>
-    </div>
-    <button hx-post="/$/Counter.php?increment=1" hx-swap="innerHTML" hx-target="#<?= $ids->count ?>">
-        Increment
-    </button>
-    <button hx-post="/$/Counter.php?decrement=1" hx-swap="innerHTML" hx-target="#<?= $ids->count ?>">
-        Decrement
-    </button>
+    <div class="<?= $classes->counter ?>">
+        <div class="<? $classes->value ?>">
+            Count: <span id="<?= $ids->count ?>"> <?= $store->count ?> </span>
+        </div>
 
+        <div class="<?= $classes->actions ?>">
+            <button hx-post="/$/Counter.php?increment=1" hx-swap="innerHTML" hx-target="#<?= $ids->count ?>">
+                Increment
+            </button>
+            <button hx-post="/$/Counter.php?decrement=1" hx-swap="innerHTML" hx-target="#<?= $ids->count ?>">
+                Decrement
+            </button>
+        </div>
+    </div>
 <?
 }
