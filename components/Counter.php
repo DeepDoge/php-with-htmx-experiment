@@ -1,9 +1,6 @@
 <? {
-    require_once ROOT_PATH . "/libs/uniqueIds.php";
     require_once ROOT_PATH . "/libs/fileStore.php";
 
-    $classes = new UniqueIdStore();
-    $ids = new UniqueIdStore();
     $store = new FileStore("/tmp/counter-store");
 
     $store->count ??= 0;
@@ -16,6 +13,10 @@
         }
         exit;
     }
+
+    require_once ROOT_PATH . "/libs/uniqueIds.php";
+    $classes = new UniqueIdStore();
+    $ids = new UniqueIdStore();
 ?>
     <div class="<?= $classes->counter ?>">
         <div class="<? $classes->value ?>">
